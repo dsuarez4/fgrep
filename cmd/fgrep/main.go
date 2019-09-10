@@ -4,6 +4,8 @@ package main
 import (
 	"flag"
 	"fmt"
+	"github.com/dsuarez4/fgrep/meta"
+	"os"
 )
 
 var options struct {
@@ -12,14 +14,18 @@ var options struct {
 
 func main() {
 
-	// TODO: Need to figure out way to do this in
-	//flag.Usage() = func() {
-	//	fmt.Printf("usage: %s [options] [query]\n", os.Args[0] )
-	//	flag.PrintDefaults()
-	//}
-	fmt.Printf("this program works")
+	fmt.Printf("this program compiles. That's it \n")
 
-	flag.BoolVar(&options.version, "version", false, "print version and exit")
+	flag.BoolVar(&options.version, "version", false,
+		"print version and exit")
+	flag.BoolVar(&options.version, "v", false,
+		"print version and exit (shorthand)")
+
+	if options.version {
+		fmt.Printf("%s\n", meta.Meta())
+		os.Exit(0)
+	}
+	flag.Parse()
 
 
 }
